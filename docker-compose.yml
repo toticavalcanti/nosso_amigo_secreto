@@ -24,7 +24,7 @@ services:
     volumes:
       - '.:/nosso_amigo_secreto'
     volumes_from:
-      - box
+      - box  
 
   website:
     depends_on:
@@ -43,8 +43,12 @@ services:
     image: busybox
     volumes:
       - /box
-
-
+  
+  mailcatcher:
+    image: yappabe/mailcatcher
+    ports:
+      - 1025:1025
+      - 1080:1080
 
 volumes:
   redis:
