@@ -22,22 +22,22 @@ describe RaffleService do
       end
 
       it "all members are in results as a member" do
-        result_members = @results.map {|r| r.first}
+        result_members = @results.map {|member, friend| member}
         expect(result_members.sort).to eq(@campaign.members.sort)
       end
 
       it "all member are in results as a friend" do
-        result_friends = @results.map {|r| r.last}
+        result_friends = @results.map {|member, friend| friend}
         expect(result_friends.sort).to eq(@campaign.members.sort)
       end
 
       it "a member don't get yourself" do
-        @results.each do |r|
-          expect(r.first).not_to eq(r.last)
+        @results.each do |member, friend|
+          expect(member).not_to eq(friend)
         end
       end
 
-      it "a member x don't get a member y that get the member x" do
+      it "a member x doesn't get a member y that got the member x" do
         expect(@results.select{|member, friend| @results[friend] == member}).to be_empty
       end
 
@@ -51,7 +51,7 @@ describe RaffleService do
         @response = RaffleService.new(@campaign).call
       end
 
-      it "return false" do
+      it "raise error" do
         expect(@response).to eql(false)
       end
     end
