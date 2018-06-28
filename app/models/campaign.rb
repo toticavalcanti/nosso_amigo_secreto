@@ -1,5 +1,6 @@
 class Campaign < ApplicationRecord
   belongs_to :user
+<<<<<<< HEAD
   has_many :members, dependent: :destroy
   before_create :set_member
   before_create :set_status
@@ -14,3 +15,6 @@ class Campaign < ApplicationRecord
     self.members << Member.create(name: self.user.name, email: self.user.email)
   end
 end
+=======
+end
+>>>>>>> models

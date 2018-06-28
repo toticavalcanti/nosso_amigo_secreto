@@ -3,6 +3,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
   mount Sidekiq::Web => '/sidekiq'
+<<<<<<< HEAD
 
   root to: 'pages#home'
   resources :campaigns, except: [:new] do
@@ -13,3 +14,6 @@ Rails.application.routes.draw do
   get 'members/:token/opened', to: 'members#opened'
   resources :members, only: [:create, :destroy, :update]
 end
+=======
+end
+>>>>>>> models
